@@ -3,82 +3,74 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>J9's Boardgame Finder</title>
+  <title>My Lifestyle & Activity Finder</title>
 
   <style>
-    
     *,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-html, body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden; /* safety net */
-}
-    
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+        
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       color: #5b3636;
       min-height: 100vh;
       display: flex;
-        caret-color: transparent;
-      justify-content: center;  /* horizontal center */
-  align-items: center;      /* vertical center */
-      
-
+      caret-color: transparent;
+      justify-content: center;  
+      align-items: center;      
     }
-    
+        
     ::selection {
-  background: #8c8c8c;  /* highlight background */
-  color: #5b3636;         /* text color when highlighted */
-}
-    
+      background: #8c8c8c;  
+      color: #5b3636;         
+    }
+        
     ::-moz-selection {
-  background: #2e2828;
-  color: #5b3636;
-}
-    
- /* Apply to everything inside container */
-.container > * {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeUp 0.8s ease forwards;
-    width: 100%;
-  max-width: 980px;   /* or whatever size you want */
-  align-items: center; 
+      background: #2e2828;
+      color: #5b3636;
+    }
+        
+    .container > * {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 0.8s ease forwards;
+      width: 100%;
+      max-width: 980px;   
+      align-items: center;  
+    }
 
+    .container > *:nth-child(1) { animation-delay: 0.1s; }
+    .container > *:nth-child(2) { animation-delay: 0.2s; }
+    .container > *:nth-child(3) { animation-delay: 0.3s; }
+    .container > *:nth-child(4) { animation-delay: 0.4s; }
+    .container > *:nth-child(5) { animation-delay: 0.5s; }
 
-}
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-/* Optional stagger effect */
-.container > *:nth-child(1) { animation-delay: 0.1s; }
-.container > *:nth-child(2) { animation-delay: 0.2s; }
-.container > *:nth-child(3) { animation-delay: 0.3s; }
-.container > *:nth-child(4) { animation-delay: 0.4s; }
-.container > *:nth-child(5) { animation-delay: 0.5s; }
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-    /* Backgrounds per "page" (we toggle body class in JS) */
     body.home-page {
-        display: flex;
-  justify-content: center;
-  align-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-color:#301b1b;
     }
 
     body.results-page {
       justify-content: center;
-  align-items: center;
+      align-items: center;
       background-color:#e0e1d5;
     }
 
@@ -86,25 +78,24 @@ html, body {
       width: 100%;
       max-width: 980px;
       padding: 16px;
-        margin: 0 auto;
+      margin: 0 auto;
     }
-    
+        
     button {
-  background-color: #8b5e5e;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+      background-color: #8b5e5e;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-button:hover {
-  background-color: transparent;
-  color: #8b5e5e;
-  transform: translateY(-2px);
-}
+    button:hover {
+      background-color: transparent;
+      color: #8b5e5e;
+      transform: translateY(-2px);
+    }
 
-    /* PAGE 1 layout */
     .split {
       display: flex;
       gap: 0px;
@@ -117,55 +108,39 @@ button:hover {
 
     .hero-img {
       width: 100%;
-  max-width: 420px;
+      max-width: 420px;
       margin: 0px auto;
       cursor: pointer;
       display: block;
-      align: center;
     }
 
-   .paper-text {
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto;
+    .paper-text {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      background-image: url("https://image2url.com/r2/default/files/1770909023927-76cf5602-ae0a-4fc9-afd1-2bb3930cd770.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      text-align: left;
+      font-size: 17px;
+      padding: 70px 30px 60px 60px; 
+    }
+        
+    @media (min-width: 450px) {
+      .paper-text { padding: 70px 50px 80px 120px; }
+    }
 
-  background-image: url("https://image2url.com/r2/default/files/1770909023927-76cf5602-ae0a-4fc9-afd1-2bb3930cd770.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+    @media (min-width: 768px) {
+      .paper-text { padding: 70px 50px 80px 100px; }
+    }
 
-  text-align: left;
-  font-size: 17px;
-
-  /* 📱 PHONE (default) */
-  padding: 70px 30px 60px 60px; 
-  /* top right bottom left */
-}
-    
-    /* 📱➡️📲 iPad / Tablet */
-@media (min-width: 450px) {
-  .paper-text {
-    padding: 70px 50px 80px 120px;
-  }
-}
-
-
-/* 📱➡️📲 iPad / Tablet */
-@media (min-width: 768px) {
-  .paper-text {
-    padding: 70px 50px 80px 100px;
-  }
-}
-
-
-/* 💻 Desktop */
-@media (min-width: 1024px) {
-  .paper-text {
-    padding: 90px 30px 100px 100px;
-    font-size: 18px;
-  }
-}
-
+    @media (min-width: 1024px) {
+      .paper-text {
+        padding: 90px 30px 100px 100px;
+        font-size: 18px;
+      }
+    }
 
     .right-pane { text-align: left; }
 
@@ -184,19 +159,6 @@ button:hover {
       text-align: center;
       letter-spacing: 0.3px;
       color: #5b3636;
-    }
-
-    .btn-play {
-      margin: 0px 3px;
-      padding: 8px 10px;
-      background-color: #301b1b;
-      color: #5b3636;
-      border: none;
-      border-radius: 20px;
-      font-size: 14px;
-      letter-spacing: 0.5px;
-      text-transform: lowercase;
-      cursor: pointer;
     }
 
     .btn {
@@ -251,9 +213,6 @@ button:hover {
       cursor: pointer;
     }
 
-    /* =========================
-       RESULTS PAGE (UPDATED)
-       ========================= */
     #resultsPage {
       text-align: center;
       padding-top: 10px;
@@ -293,15 +252,13 @@ button:hover {
       width: 100%;
       max-width: 800px;
       display: grid;
-      grid-template-columns: 180px 1fr 220px;
+      grid-template-columns: 180px 1fr;
       gap: 20px;
       align-items: center;
-
       background: rgba(255, 255, 255, 0.70);
       border: 1px solid rgba(91, 54, 54, 0.7);
       border-radius: 22px;
       padding: 20px;
-      box-shadow: none;
     }
 
     .game-photo {
@@ -316,7 +273,6 @@ button:hover {
 
     .g-mid {
       text-align: left;
-      
     }
 
     .title {
@@ -339,60 +295,34 @@ button:hover {
     }
 
     .g-right {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  font-size: 12px; 
-  opacity: 80%;
-}
-
-.g-right .info-item:not(:last-child)::after {
-  content: " ·";
-}
-
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 13px; 
+      opacity: 80%;
+      padding: 0px 20px;
+      gap: 10px;
+      color: #5b3636;
+      font-weight: bold;
+    }
 
     .results-actions {
       margin: 18px 0 6px;
       display: flex;
       justify-content: center;
     }
-    
 
-    /* Responsive */
     @media (max-width: 820px) {
       .split { flex-direction: column; }
       .left-pane, .right-pane { width: 100%; }
-
-      .game-block {
-        grid-template-columns: 160px 1fr;
-        grid-template-areas:
-          "img mid"
-          "right right";
-      }
-
+      .game-block { grid-template-columns: 160px 1fr; }
       .game-photo { width: 160px; height: 120px; }
-
-      .g-mid { grid-area: mid; }
-      .g-right { grid-area: right; }
-
       .title { font-size: 36px; }
     }
 
     @media (max-width: 520px) {
-      .game-block {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "img"
-          "mid"
-          "right";
-        text-align: center;
-      }
-
+      .game-block { grid-template-columns: 1fr; text-align: center; }
       .game-photo { margin: 0 auto; }
-
-      .g-mid, .g-right { text-align: center; }
-
+      .g-mid { text-align: center; }
       .title { font-size: 34px; }
       .desc { margin: 0 auto; }
     }
@@ -402,17 +332,14 @@ button:hover {
 <body class="home-page">
   <div class="container">
 
-    <!-- SEARCH PAGE -->
     <div id="searchPage">
       <div class="split">
-        <!-- LEFT SIDE -->
         <div class="left-pane">
           <h1>
-            <img class="hero-img" src="https://i.imgur.com/3IpcBF9.png" alt="J9's Boardgame Finder">
+            <img class="hero-img" src="https://i.imgur.com/3IpcBF9.png" alt="Branding Header">
           </h1>
         </div>
 
-        <!-- RIGHT SIDE -->
         <div class="right-pane">
           <center>
             <div class="paper-text">
@@ -421,7 +348,7 @@ button:hover {
                 No. of players
                 <select id="players">
                   <option value=""></option>
-                  <option value="1">1</option>
+                  <option value="1">1 (Solo)</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
@@ -435,47 +362,19 @@ button:hover {
               </div>
 
               <div class="row">
-                Category
+                Vibe Group
                 <select id="category">
                   <option value=""></option>
-                  <option value="party">Party</option>
-                  <option value="deception">Deception</option>
-                  <option value="co-op">Co-op</option>
-                  <option value="pvp">PvP</option>
-                  <option value="words">Words</option>
-                  <option value="strategy">Strategy</option>
+                  <option value="solo">Solo-Friendly</option>
+                  <option value="group">Group Hangout</option>
                 </select>
               </div>
 
-              <div class="row">
-                Difficulty
-                <select id="difficulty">
-                  <option value=""></option>
-                  <option value="easy">Easy</option>
-                  <option value="medium">Medium</option>
-                  <option value="hard">Hard</option>
-                </select>
+              <div class="row" style="opacity: 0.4; pointer-events: none;">
+                More filters coming soon
               </div>
 
-              <div class="row">
-                Playtime
-                <select id="playtime">
-                  <option value=""></option>
-                  <option value="short">Short (15–30m)</option>
-                  <option value="medium">Medium (30–60m)</option>
-                  <option value="long">Long (60m+)</option>
-                </select>
-              </div>
-
-              <div class="row">
-                Availability
-                <select id="availability">
-                  <option value=""></option>
-                  <option value="owned">Owned</option>
-                  <option value="borrowed">Borrowed</option>
-                 
-                </select>
-              </div>
+              <br>
               <div class="row">
                 <button type="button" class="btn" onclick="searchGames()">Search</button>
                 <button type="button" class="btn-clear" onclick="clearDropdowns()">Clear</button>
@@ -489,22 +388,12 @@ button:hover {
       </div>
     </div>
 
-    <!-- RESULTS PAGE -->
     <div id="resultsPage" style="display:none;">
-      <!-- Image header -->
       <div class="results-header">
-        <!-- change this src to your TOP RESULTS image -->
-        <img
-          id="resultsHeaderImg"
-          class="results-header-img"
-          src="https://i.imgur.com/aZxq2ew.png"
-          alt="Top Results"
-        >
+        <img id="resultsHeaderImg" class="results-header-img" src="https://i.imgur.com/aZxq2ew.png" alt="Results Header">
       </div>
 
-      <!-- Small subtitle (auto-updated by JS) -->
       <div id="resultsTitle" class="results-subtitle">Top Results</div>
-
       <div id="results" class="results-list"></div>
 
       <div class="results-actions">
@@ -513,22 +402,15 @@ button:hover {
     </div>
 
   </div>
+
 <script>
   function clearDropdowns() {
     document.getElementById("players").selectedIndex = 0;
     document.getElementById("category").selectedIndex = 0;
-    document.getElementById("difficulty").selectedIndex = 0;
-    document.getElementById("playtime").selectedIndex = 0;
-    document.getElementById("availability").selectedIndex = 0;
   }
 
-  /*
-    Category rules:
-    - category is ALWAYS an array
-    - only allowed values: party, deception, co-op, pvp, words, strategy
-  */
-const games = [
-    // 1 PERSON (SOLO)
+  const games = [
+    // 1 PERSON (SOLO - REFRESHING, COZY, AND INDEPENDENT CHOICES)
     { name: "Solo Lego Building", minPlayers: 1, maxPlayers: 2, category: ["solo", "group"], description: "Unwind with a massive Lego set, good music, and zero rush to finish.", image: "" },
     { name: "Wii Sports Resort", minPlayers: 1, maxPlayers: 4, category: ["solo", "group"], description: "Play virtual sports and island mini-games right from your couch.", image: "" },
     { name: "Projector Movie Night", minPlayers: 1, maxPlayers: 4, category: ["solo", "group"], description: "Set up a screen in your room for a cozy, cinematic escape.", image: "" },
@@ -584,11 +466,10 @@ const games = [
     { name: "Community Outreach Volunteering", minPlayers: 5, maxPlayers: 12, category: ["group"], description: "Spend an afternoon volunteering at a local food bank, kitchen, or shelter to take care of people who need it.", image: "" },
     { name: "Beach Day Bonfire", minPlayers: 5, maxPlayers: 12, category: ["group"], description: "Lay out towels for swimming by day, and stay late to tell stories around an open fire pit.", image: "" },
 
-  // 10+ PEOPLE
+    // 10+ PEOPLE
     { name: "Sports Day BBQ", minPlayers: 5, maxPlayers: 25, category: ["group"], description: "Host a massive backyard field day with competitive team games and grilled food.", image: "" }
   ];
 
-  // RANDOMIZE
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -597,67 +478,26 @@ const games = [
     return array;
   }
 
-  function capFirst(s) {
-    if (!s) return "";
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }
-
-  function availabilityLabel(v) {
-    if (v === "owned") return "Owned";
-    if (v === "borrowed") return "Borrowed";
-    return "";
-  }
-
-  function playtimeBucketFromMinutes(min, max) {
-    const t = (max ?? min ?? 0);
-    if (t <= 30) return "short";
-    if (t <= 60) return "medium";
-    return "long";
-  }
-
-  function playtimeLabel(min, max) {
-    if (min != null && max != null && min !== max) return `${min}-${max}m`;
-    if (min != null) return `${min}m`;
-    return "";
-  }
-
   function matchesPlayers(game, selectedPlayers) {
     if (!selectedPlayers) return true;
     const n = Number(selectedPlayers);
     return game.minPlayers <= n && game.maxPlayers >= n;
   }
 
-  // category formatting for display
-  function categoryLabel(cat) {
-    if (cat === "pvp") return "PvP";
-    if (cat === "co-op") return "Co-op";
-    return capFirst(cat);
-  }
-
   function matchesFilters(game) {
     const players = document.getElementById("players").value;
     const category = document.getElementById("category").value;
-    const difficulty = document.getElementById("difficulty").value;
-    const playtime = document.getElementById("playtime").value;
-    const availability = document.getElementById("availability").value;
 
     if (!matchesPlayers(game, players)) return false;
 
-    // CATEGORY: supports multiple
     if (category) {
-      const cats = Array.isArray(game.category) ? game.category : [game.category];
-      if (!cats.includes(category)) return false;
+      if (!game.category.includes(category)) return false;
     }
-
-    if (difficulty && game.difficulty !== difficulty) return false;
-    if (playtime && playtimeBucketFromMinutes(game.playtimeMin, game.playtimeMax) !== playtime) return false;
-    if (availability && game.availability !== availability) return false;
 
     return true;
   }
 
   function showResults(resultsList, titleText, headerImage) {
-    // Switch background to results
     document.body.classList.remove("home-page");
     document.body.classList.add("results-page");
 
@@ -665,35 +505,24 @@ const games = [
       document.getElementById("resultsHeaderImg").src = headerImage;
     }
 
-    // subtitle text
     document.getElementById("resultsTitle").textContent = titleText;
-
     const resultsDiv = document.getElementById("results");
     resultsDiv.innerHTML = "";
 
     if (resultsList.length === 0) {
-      resultsDiv.innerHTML = "<div class='row'>No games found.<br>Try widening your search.</div>";
+      resultsDiv.innerHTML = "<div class='row'>No matches found.<br>Try widening your search tags.</div>";
     } else {
       resultsList.forEach((g) => {
-        const cats = (Array.isArray(g.category) ? g.category : [g.category])
-          .map(categoryLabel)
-          .join(", ");
-
         resultsDiv.innerHTML += `
           <div class="game-block">
-            <img class="game-photo" src="${g.image}" alt="${g.name}">
-
+            <img class="game-photo" src="${g.image || 'https://placehold.co/180x120/5b3636/ffffff?text=Activity'}" alt="${g.name}">
             <div class="g-mid">
               <div class="title">${g.name}</div>
               <p class="desc">${g.description}</p>
-            </div>
-
-            <div class="g-right">
-              <span class="info-item">Players: ${g.minPlayers}–${g.maxPlayers >= 10 ? "10+" : g.maxPlayers}</span>
-              <span class="info-item">Category: ${cats}</span>
-              <span class="info-item">Difficulty: ${capFirst(g.difficulty)}</span>
-              <span class="info-item">Playtime: ${playtimeLabel(g.playtimeMin, g.playtimeMax)}</span>
-              <span class="info-item">Availability: ${availabilityLabel(g.availability)}</span>
+              <br>
+              <div class="g-right">
+                <span>Squad Fit: ${g.minPlayers}–${g.maxPlayers >= 20 ? "10+" : g.maxPlayers} players</span>
+              </div>
             </div>
           </div>
         `;
@@ -702,14 +531,12 @@ const games = [
 
     document.getElementById("searchPage").style.display = "none";
     document.getElementById("resultsPage").style.display = "block";
-
-    // scroll to top (mobile-friendly)
     setTimeout(() => window.scrollTo(0, 0), 0);
   }
 
   function searchGames() {
     const filtered = games.filter(matchesFilters);
-    const shuffled = shuffleArray([...filtered]); // shuffle a COPY
+    const shuffled = shuffleArray([...filtered]);
     showResults(shuffled, "Matched Results", "https://i.imgur.com/aZxq2ew.png");
   }
 
@@ -719,19 +546,16 @@ const games = [
   }
 
   function showAllOwned() {
-    const ownedGames = games.filter(g => g.availability === "owned");
-    showResults(ownedGames, "All Owned Games", "https://i.imgur.com/cHjS0yP.png");
+    // Shows your entire awesome collection all at once!
+    const shuffledAll = shuffleArray([...games]);
+    showResults(shuffledAll, "All Custom Activities", "https://i.imgur.com/cHjS0yP.png");
   }
 
   function goBack() {
-    // Switch background back to home
     document.body.classList.remove("results-page");
     document.body.classList.add("home-page");
-
     document.getElementById("resultsPage").style.display = "none";
     document.getElementById("searchPage").style.display = "block";
-
-    // scroll to top (mobile-friendly)
     setTimeout(() => window.scrollTo(0, 0), 0);
   }
 </script>
