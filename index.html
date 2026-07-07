@@ -39,28 +39,23 @@
       color: #5b3636;
     }
         
-    .container > * {
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeUp 0.8s ease forwards;
-      width: 100%;
-      max-width: 980px;
-      align-items: center;  
-    }
+  .container > * {
+  opacity: 0;
+  /* Combine the entry animation and the 80% scale reduction */
+  transform: translateY(10px) scale(0.8); 
+  animation: fadeUp 0.8s ease forwards;
+  width: 100%;
+  max-width: 980px;
+  align-items: center;  
+  transform-origin: center center; /* Keeps everything perfectly centered as it shrinks */
+}
 
-    .container > *:nth-child(1) { animation-delay: 0.1s; }
-    .container > *:nth-child(2) { animation-delay: 0.2s; }
-    .container > *:nth-child(3) { animation-delay: 0.3s; }
-    .container > *:nth-child(4) { animation-delay: 0.4s; }
-    .container > *:nth-child(5) { animation-delay: 0.5s; }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(0.8); /* Ensures it stays at 80% scale after animating */
+  }
+}
     body.home-page {
       display: flex;
       justify-content: center;
