@@ -482,7 +482,7 @@
     { name: "Rec Center Open Swim", minPlayers: 2, maxPlayers: 6, environment: "physical", energy: "high focus", cost: "project-based", description: "Hit up the indoor community pool for open swim hours and lane racing.", image: "" },
     { name: "Escape Room Challenge", minPlayers: 2, maxPlayers: 6, environment: "indoor", energy: "high focus", cost: "project-based", description: "Get locked in a themed room and race against a 60-minute clock to solve clues.", image: "" },
     { name: "Helicopter City Tour", minPlayers: 2, maxPlayers: 4, environment: "outdoor", energy: "low energy", cost: "project-based", description: "Take to the skies for a breathtaking, unforgettable bird's-eye view of the city.", image: "" },
-    { name: "Ice Cream Vibe Check", minPlayers: 2, maxPlayers: 6, environment: "outdoor", environment: "outdoor", energy: "low energy", cost: "project-based", description: "Walk down to a local parlor, grab double scoops, and catch up on life.", image: "" },
+    { name: "Ice Cream Vibe Check", minPlayers: 2, maxPlayers: 6, environment: "outdoor", energy: "low energy", cost: "project-based", description: "Walk down to a local parlor, grab double scoops, and catch up on life.", image: "" },
     { name: "Farmer's Market Cooking Challenge", minPlayers: 2, maxPlayers: 4, environment: "indoor", energy: "creative", cost: "project-based", description: "Pick up fresh, completely random local ingredients and turn them into a custom dinner dish.", image: "" },
     { name: "Local Event Scout", minPlayers: 2, maxPlayers: 6, environment: "outdoor", energy: "low energy", cost: "zero setup", description: "Scan community boards for free concerts, festivals, or pop-up block parties and just go.", image: "" },
     { name: "Blindfolded Duck Game", minPlayers: 5, maxPlayers: 10, environment: "outdoor", energy: "high focus", cost: "zero setup", description: "Use water blasters to hunt target objects while completely blindfolded.", image: "" },
@@ -502,10 +502,11 @@
   }
 
   function matchesFilters(game) {
-    const selPlayers = document.querySelector('input[name="players"]:checked')?.value;
-    const selEnv = document.querySelector('input[name="environment"]:checked')?.value;
-    const selEnergy = document.querySelector('input[name="energy"]:checked')?.value;
-    const selCost = document.querySelector('input[name="cost"]:checked')?.value;
+    // FIXED: Now properly reading the dropdown element values instead of radio configurations
+    const selPlayers = document.getElementById("players").value;
+    const selEnv = document.getElementById("environment").value;
+    const selEnergy = document.getElementById("energy").value;
+    const selCost = document.getElementById("cost").value;
 
     // Player Check
     if (selPlayers) {
@@ -572,7 +573,6 @@
     showResults(shuffled.slice(0, 3), "Feeling Random", "https://i.imgur.com/ktBHxKG.png");
   }
 
-  // Filters down to show exclusively your chosen items when "Show All" is triggered
   function showAllOwned() {
     const myListOnly = games.filter(g => g.isMyList === true);
     const shuffledCustom = shuffleArray([...myListOnly]);
