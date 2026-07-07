@@ -98,57 +98,20 @@
 
     .split {
       display: flex;
-      gap: 20px;
+      gap: 0px;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
     }
 
     .left-pane, .right-pane { width: 50%; }
-    .left-pane { text-align: left; padding-top: 20px; }
+    .left-pane { text-align: center; }
 
     .hero-img {
       width: 100%;
       max-width: 420px;
-      margin: 0px 0px 20px 0px;
+      margin: 0px auto;
       cursor: pointer;
       display: block;
-    }
-
-    /* Original Sidebar Filter Styling */
-    .sidebar-title {
-      font-size: 14px;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      margin: 15px 0 5px 0;
-      text-transform: lowercase;
-      opacity: 0.8;
-    }
-
-    .sidebar-option {
-      margin: 2px 0;
-      font-size: 14px;
-      line-height: 1.6;
-      text-transform: lowercase;
-      cursor: pointer;
-      transition: opacity 0.2s ease;
-    }
-    
-    .sidebar-option:hover {
-      opacity: 0.7;
-    }
-
-    .sidebar-option input[type="radio"] {
-      display: none;
-    }
-
-    .sidebar-option span {
-      margin-left: 5px;
-    }
-
-    /* Active state styling to know what filter is on */
-    .sidebar-option input[type="radio"]:checked + span {
-      font-weight: bold;
-      text-decoration: underline;
     }
 
     .paper-text {
@@ -187,6 +150,15 @@
       line-height: 2.4;
       letter-spacing: -.5px;
       text-transform: lowercase;
+    }
+
+    select {
+      padding: 4px 6px;
+      margin: 0px 10px;
+      font-size: 13px;
+      text-align: center;
+      letter-spacing: 0.3px;
+      color: #5b3636;
     }
 
     .btn {
@@ -374,53 +346,60 @@
           <h1>
             <img class="hero-img" src="https://i.imgur.com/3IpcBF9.png" alt="Branding Header">
           </h1>
-          
-          <form id="filterForm">
-            <div class="sidebar-title">no. of players</div>
-            <div id="playerOptions">
-              <label class="sidebar-option"><input type="radio" name="players" value="1"><span>— 1</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="players" value="2"><span>— 2</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="players" value="3"><span>— 3</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="players" value="4"><span>— 4</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="players" value="5"><span>— 5</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="players" value="6"><span>— 6</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="players" value="7"><span>— 7</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="players" value="8"><span>— 8</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="players" value="9"><span>— 9</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="players" value="10"><span>— 10+</span></label>
-            </div>
-
-            <div class="sidebar-title">environment</div>
-            <div id="environmentOptions">
-              <label class="sidebar-option"><input type="radio" name="environment" value="indoor"><span>— indoor</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="environment" value="outdoor"><span>— outdoor</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="environment" value="digital"><span>— digital</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="environment" value="physical"><span>— physical</span></label>
-            </div>
-
-            <div class="sidebar-title">energy level</div>
-            <div id="energyOptions">
-              <label class="sidebar-option"><input type="radio" name="energy" value="low energy"><span>— low energy</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="energy" value="creative"><span>— creative</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="energy" value="high focus"><span>— high focus</span></label>
-            </div>
-
-            <div class="sidebar-title">cost & materials</div>
-            <div id="costOptions">
-              <label class="sidebar-option"><input type="radio" name="cost" value="zero setup"><span>— zero setup</span></label><br>
-              <label class="sidebar-option"><input type="radio" name="cost" value="project-based"><span>— project-based</span></label>
-            </div>
-          </form>
         </div>
 
         <div class="right-pane">
           <center>
             <div class="paper-text">
-              <br><br>
-              <div class="row" style="font-style: italic; opacity: 0.85;">
-                select your criteria from the sidebar terminal to generate your matching layout timeline.
+              <br>
+              <div class="row">
+                No. of players
+                <select id="players">
+                  <option value=""></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10+</option>
+                </select>
               </div>
-              <br><br><br>
+
+              <div class="row">
+                Environment
+                <select id="environment">
+                  <option value=""></option>
+                  <option value="indoor">Indoor</option>
+                  <option value="outdoor">Outdoor</option>
+                  <option value="digital">Digital</option>
+                  <option value="physical">Physical</option>
+                </select>
+              </div>
+
+              <div class="row">
+                Energy Level
+                <select id="energy">
+                  <option value=""></option>
+                  <option value="low energy">Low Energy</option>
+                  <option value="creative">Creative</option>
+                  <option value="high focus">High Focus</option>
+                </select>
+              </div>
+
+              <div class="row">
+                Cost & Materials
+                <select id="cost">
+                  <option value=""></option>
+                  <option value="zero setup">Zero Setup</option>
+                  <option value="project-based">Project-based</option>
+                </select>
+              </div>
+
+              <br>
               <div class="row">
                 <button type="button" class="btn" onclick="searchGames()">Search</button>
                 <button type="button" class="btn-clear" onclick="clearDropdowns()">Clear</button>
@@ -451,8 +430,10 @@
 
 <script>
   function clearDropdowns() {
-    const radios = document.querySelectorAll('#filterForm input[type="radio"]');
-    radios.forEach(radio => radio.checked = false);
+    document.getElementById("players").value = "";
+    document.getElementById("environment").value = "";
+    document.getElementById("energy").value = "";
+    document.getElementById("cost").value = "";
   }
 
   const games = [
