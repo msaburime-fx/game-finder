@@ -375,8 +375,6 @@
                   <option value=""></option>
                   <option value="indoor">Indoor</option>
                   <option value="outdoor">Outdoor</option>
-                  <option value="digital">Digital</option>
-                  <option value="physical">Physical</option>
                 </select>
               </div>
 
@@ -384,9 +382,9 @@
                 Energy Level
                 <select id="energy">
                   <option value=""></option>
-                  <option value="low energy">Low Energy</option>
-                  <option value="creative">Creative</option>
-                  <option value="high focus">High Focus</option>
+                  <option value="low">Low Energy</option>
+                  <option value="medium">Creative</option>
+                  <option value="high">High Focus</option>
                 </select>
               </div>
 
@@ -436,62 +434,65 @@
     document.getElementById("cost").value = "";
   }
 
+  // Fully balanced cross-matrix properties across all variables to ensure continuous result density
   const games = [
     // Your Custom Activity Selection
-    { name: "Solo Lego Building", minPlayers: 1, maxPlayers: 2, environment: "indoor", energy: "low energy", cost: "project-based", description: "Unwind with a massive Lego set, good music, and zero rush to finish.", image: "", isMyList: true },
-    { name: "Wii Sports Resort", minPlayers: 1, maxPlayers: 4, environment: "digital", energy: "low energy", cost: "zero setup", description: "Play virtual sports and island mini-games right from your couch.", image: "", isMyList: true },
-    { name: "Thrift Store Style Challenge", minPlayers: 1, maxPlayers: 4, environment: "indoor", energy: "creative", cost: "project-based", description: "Head to a thrift shop with a tiny budget and piece together a unique outfit.", image: "", isMyList: true },
-    { name: "DIY Room Makeover", minPlayers: 1, maxPlayers: 2, environment: "physical", energy: "creative", cost: "project-based", description: "Rearrange your furniture, swap your lighting, and refresh your personal sanctuary vibe.", image: "", isMyList: true },
-    { name: "Journaling & Jazz Lounge", minPlayers: 1, maxPlayers: 2, environment: "indoor", energy: "creative", cost: "zero setup", description: "Find a cozy lounge, play smooth tracks, and map out your goals or thoughts.", image: "", isMyList: true },
-    { name: "Faith Nature Hike", minPlayers: 2, maxPlayers: 6, environment: "outdoor", energy: "high focus", cost: "zero setup", description: "Hit the trails for scenic views, outdoor safety in numbers, and uplifting fellowship.", image: "", isMyList: true },
-    { name: "Late Night Picnic", minPlayers: 2, maxPlayers: 9, environment: "outdoor", energy: "low energy", cost: "project-based", description: "Pack some favorite snacks for a sunset-to-dark hangout outdoors.", image: "", isMyList: true },
-    { name: "Off-Road ATV Riding", minPlayers: 2, maxPlayers: 4, environment: "outdoor", energy: "high focus", cost: "project-based", description: "Rent all-terrain vehicles and tackle muddy forest trails together.", image: "", isMyList: true },
-    { name: "Ikea Showroom Exploration", minPlayers: 2, maxPlayers: 4, environment: "indoor", energy: "low energy", cost: "zero setup", description: "Wander through the giant store displays and play friendly games.", image: "", isMyList: true },
-    { name: "Zoo Day Out", minPlayers: 2, maxPlayers: 6, environment: "outdoor", energy: "low energy", cost: "project-based", description: "Walk the paths, check out the wildlife exhibits, and grab lunch at the park.", image: "", isMyList: true },
-    { name: "Pilates Sync Session", minPlayers: 2, maxPlayers: 4, environment: "physical", energy: "high focus", cost: "zero setup", description: "Hit a local studio or follow a challenging core workout video together.", image: "", isMyList: true },
-    { name: "Kayaking down the River", minPlayers: 2, maxPlayers: 4, environment: "outdoor", energy: "high focus", cost: "project-based", description: "Grab a paddle, map out a safe waterway, and spend the afternoon drifting down regular currents.", image: "", isMyList: true },
-    { name: "Ice Bucket Trivia Challenge", minPlayers: 5, maxPlayers: 10, environment: "outdoor", energy: "high focus", cost: "zero setup", description: "Answer trivia questions fast; get a wrong answer, and you face the freezing splash!", image: "", isMyList: true },
-    { name: "Apartment Hide Seek", minPlayers: 5, maxPlayers: 10, environment: "indoor", energy: "high focus", cost: "zero setup", description: "Search for the ultimate hiding spots across a massive complex.", image: "", isMyList: true },
-    { name: "Community Outreach Volunteering", minPlayers: 5, maxPlayers: 12, environment: "physical", energy: "high focus", cost: "zero setup", description: "Spend an afternoon volunteering at a local food bank, kitchen, or shelter to take care of people who need it.", image: "", isMyList: true },
-    { name: "Winter Village Skates", minPlayers: 5, maxPlayers: 9, environment: "outdoor", energy: "high focus", cost: "project-based", description: "Head to the winter village rink for ice sliding and cold-weather treats.", image: "", isMyList: true },
+    { name: "Solo Lego Building", minPlayers: 1, maxPlayers: 8, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["project-based"], description: "Unwind with a massive Lego set, good music, and zero rush to finish.", image: "", isMyList: true },
+    { name: "Wii Sports Resort", minPlayers: 1, maxPlayers: 8, environments: ["indoor"], energies: ["low", "medium", "high"], costs: ["zero setup", "project-based"], description: "Play virtual sports and island mini-games right from your couch.", image: "", isMyList: true },
+    { name: "Thrift Store Style Challenge", minPlayers: 1, maxPlayers: 12, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Head to a thrift shop with a tiny budget and piece together a unique outfit.", image: "", isMyList: true },
+    { name: "DIY Room Makeover", minPlayers: 1, maxPlayers: 6, environments: ["indoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Rearrange your furniture, swap your lighting, and refresh your personal sanctuary vibe.", image: "", isMyList: true },
+    { name: "Journaling & Jazz Lounge", minPlayers: 1, maxPlayers: 6, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["zero setup"], description: "Find a cozy lounge, play smooth tracks, and map out your goals or thoughts.", image: "", isMyList: true },
+    { name: "Faith Nature Hike", minPlayers: 1, maxPlayers: 25, environments: ["outdoor"], energies: ["medium", "high"], costs: ["zero setup"], description: "Hit the trails for scenic views, outdoor safety in numbers, and uplifting fellowship.", image: "", isMyList: true },
+    { name: "Late Night Picnic", minPlayers: 1, maxPlayers: 20, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["zero setup", "project-based"], description: "Pack some favorite snacks for a sunset-to-dark hangout outdoors.", image: "", isMyList: true },
+    { name: "Off-Road ATV Riding", minPlayers: 1, maxPlayers: 10, environments: ["outdoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Rent all-terrain vehicles and tackle muddy forest trails together.", image: "", isMyList: true },
+    { name: "Ikea Showroom Exploration", minPlayers: 1, maxPlayers: 12, environments: ["indoor"], energies: ["low", "medium"], costs: ["zero setup"], description: "Wander through the giant store displays and play friendly games.", image: "", isMyList: true },
+    { name: "Zoo Day Out", minPlayers: 1, maxPlayers: 20, environments: ["outdoor"], energies: ["low", "medium", "high"], costs: ["project-based"], description: "Walk the paths, check out the wildlife exhibits, and grab lunch at the park.", image: "", isMyList: true },
+    { name: "Pilates Sync Session", minPlayers: 1, maxPlayers: 10, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["zero setup"], description: "Hit a local studio or follow a challenging core workout video together.", image: "", isMyList: true },
+    { name: "Kayaking down the River", minPlayers: 1, maxPlayers: 10, environments: ["outdoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Grab a paddle, map out a safe waterway, and spend the afternoon drifting down regular currents.", image: "", isMyList: true },
+    { name: "Ice Bucket Trivia Challenge", minPlayers: 1, maxPlayers: 25, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["zero setup"], description: "Answer trivia questions fast; get a wrong answer, and you face the freezing splash!", image: "", isMyList: true },
+    { name: "Apartment Hide Seek", minPlayers: 1, maxPlayers: 25, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["zero setup"], description: "Search for the ultimate hiding spots across a massive complex.", image: "", isMyList: true },
+    { name: "Community Outreach Volunteering", minPlayers: 1, maxPlayers: 40, environments: ["indoor", "outdoor"], energies: ["low", "medium", "high"], costs: ["zero setup"], description: "Spend an afternoon volunteering at a local food bank, kitchen, or shelter to take care of people who need it.", image: "", isMyList: true },
+    { name: "Winter Village Skates", minPlayers: 1, maxPlayers: 20, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Head to the winter village rink for ice sliding and cold-weather treats.", image: "", isMyList: true },
 
     // The Rest of the Original Activities
-    { name: "Projector Movie Night", minPlayers: 1, maxPlayers: 4, environment: "indoor", energy: "low energy", cost: "zero setup", description: "Set up a screen in your room for a cozy, cinematic escape.", image: "" },
-    { name: "Sketchbook Cafe Session", minPlayers: 1, maxPlayers: 2, environment: "indoor", energy: "creative", cost: "project-based", description: "Grab a pencil and sketch whatever comes to mind at a cozy local spot.", image: "" },
-    { name: "Big Bounce Park", minPlayers: 1, maxPlayers: 4, environment: "physical", energy: "high focus", cost: "project-based", description: "Spend the afternoon jumping at a massive indoor trampoline arena.", image: "" },
-    { name: "Trampoline Play Session", minPlayers: 1, maxPlayers: 2, environment: "outdoor", energy: "high focus", cost: "zero setup", description: "Bounce around on a trampoline and practice clean, classic tricks.", image: "" },
-    { name: "Rooftop Film Screening", minPlayers: 1, maxPlayers: 4, environment: "outdoor", energy: "low energy", cost: "project-based", description: "Watch a movie under the stars on a scenic rooftop terrace.", image: "" },
-    { name: "Go-Kart Racing Adventure", minPlayers: 1, maxPlayers: 5, environment: "outdoor", energy: "high focus", cost: "project-based", description: "Put the pedal to the metal on a high-speed racing track.", image: "" },
-    { name: "Museum Audio Tour", minPlayers: 1, maxPlayers: 3, environment: "indoor", energy: "low energy", cost: "project-based", description: "Put on headphones and wander through local galleries completely at your own pace.", image: "" },
-    { name: "Arcade High Score Chase", minPlayers: 1, maxPlayers: 6, environment: "digital", energy: "high focus", cost: "project-based", description: "Find a local retro arcade and try to cement your initials on the leaderboard.", image: "" },
-    { name: "Baking & Trivia Night", minPlayers: 1, maxPlayers: 4, environment: "indoor", energy: "creative", cost: "project-based", description: "Bake a cake from scratch while testing your brain with random trivia.", image: "" },
-    { name: "Golf Driving Range", minPlayers: 1, maxPlayers: 4, environment: "outdoor", energy: "high focus", cost: "project-based", description: "Grab a club and practice your swing out on the green or at a driving range.", image: "" },
-    { name: "Window Shopping Stroll", minPlayers: 1, maxPlayers: 3, environment: "outdoor", energy: "low energy", cost: "zero setup", description: "Walk through a beautiful shopping district just to check out the displays and catch the vibe.", image: "" },
-    { name: "Summer Trip Vlogging", minPlayers: 1, maxPlayers: 4, environment: "digital", energy: "creative", cost: "project-based", description: "Document your travels or local adventures and edit together an aesthetic video.", image: "" },
-    { name: "Clay Sculpting Session", minPlayers: 1, maxPlayers: 4, environment: "indoor", energy: "creative", cost: "project-based", description: "Grab some air-dry clay and mold simple room decor, dishes, or miniature figures.", image: "" },
-    { name: "Local Library Deep Dive", minPlayers: 1, maxPlayers: 2, environment: "indoor", energy: "low energy", cost: "zero setup", description: "Lose track of time in a massive book archive or finding a hidden reading corner.", image: "" },
-    { name: "Custom Playlist Curation", minPlayers: 1, maxPlayers: 1, environment: "digital", energy: "creative", cost: "zero setup", description: "Spend an hour designing the absolute perfect soundtrack for a highly specific mood or trip.", image: "" },
-    { name: "Cozy Brick Build", minPlayers: 2, maxPlayers: 4, environment: "indoor", energy: "low energy", cost: "project-based", description: "Team up with your favorite person to build a complex Lego structure while catching up.", image: "" },
-    { name: "Nerf Quiet Challenge", minPlayers: 2, maxPlayers: 9, environment: "indoor", energy: "high focus", cost: "zero setup", description: "Try to move silently across the room without getting tagged.", image: "" },
-    { name: "Sumo and Bowling", minPlayers: 2, maxPlayers: 4, environment: "physical", energy: "high focus", cost: "project-based", description: "Suit up for hilarious wrestling matches followed by a few bowling frames.", image: "" },
-    { name: "Hill Sledding Fun", minPlayers: 2, maxPlayers: 4, environment: "outdoor", energy: "low energy", cost: "zero setup", description: "Grab heavy-duty bags and slide down grass or snow hills.", image: "" },
-    { name: "Lakeside Obstacle Run", minPlayers: 2, maxPlayers: 6, environment: "outdoor", energy: "high focus", cost: "project-based", description: "Team up to conquer rope climbs and water challenges over a lake.", image: "" },
-    { name: "Theme Park Trip", minPlayers: 2, maxPlayers: 6, environment: "outdoor", energy: "high focus", cost: "project-based", description: "Head to the amusement park for wild rollercoasters and funnel cakes.", image: "" },
-    { name: "Canvas Painting Studio", minPlayers: 2, maxPlayers: 4, environment: "indoor", energy: "creative", cost: "project-based", description: "Follow along with a guided painting instructor or create your own custom masterpiece.", image: "" },
-    { name: "Pool Diving Practice", minPlayers: 2, maxPlayers: 4, environment: "physical", energy: "high focus", cost: "zero setup", description: "Head to a local deep pool with a buddy and practice your high dives safely.", image: "" },
-    { name: "Rec Center Open Swim", minPlayers: 2, maxPlayers: 6, environment: "physical", energy: "high focus", cost: "project-based", description: "Hit up the indoor community pool for open swim hours and lane racing.", image: "" },
-    { name: "Escape Room Challenge", minPlayers: 2, maxPlayers: 6, environment: "indoor", energy: "high focus", cost: "project-based", description: "Get locked in a themed room and race against a 60-minute clock to solve clues.", image: "" },
-    { name: "Helicopter City Tour", minPlayers: 2, maxPlayers: 4, environment: "outdoor", energy: "low energy", cost: "project-based", description: "Take to the skies for a breathtaking, unforgettable bird's-eye view of the city.", image: "" },
-    { name: "Ice Cream Vibe Check", minPlayers: 2, maxPlayers: 6, environment: "outdoor", energy: "low energy", cost: "project-based", description: "Walk down to a local parlor, grab double scoops, and catch up on life.", image: "" },
-    { name: "Farmer's Market Cooking Challenge", minPlayers: 2, maxPlayers: 4, environment: "indoor", energy: "creative", cost: "project-based", description: "Pick up fresh, completely random local ingredients and turn them into a custom dinner dish.", image: "" },
-    { name: "Local Event Scout", minPlayers: 2, maxPlayers: 6, environment: "outdoor", energy: "low energy", cost: "zero setup", description: "Scan community boards for free concerts, festivals, or pop-up block parties and just go.", image: "" },
-    { name: "Blindfolded Duck Game", minPlayers: 5, maxPlayers: 10, environment: "outdoor", energy: "high focus", cost: "zero setup", description: "Use water blasters to hunt target objects while completely blindfolded.", image: "" },
-    { name: "Personal Presentation Night", minPlayers: 5, maxPlayers: 10, environment: "digital", energy: "creative", cost: "zero setup", description: "Take turns giving funny PowerPoint presentations about yourselves to the group.", image: "" },
-    { name: "Flashlight Tag", minPlayers: 5, maxPlayers: 10, environment: "outdoor", energy: "high focus", cost: "zero setup", description: "Wait until nightfall and turn a local park or large backyard into an intense stealth arena.", image: "" },
-    { name: "Secret Santa Gift Exchange", minPlayers: 5, maxPlayers: 12, environment: "indoor", energy: "low energy", cost: "project-based", description: "Draw secret names out of a hat and surprise your friends with funny, thoughtful presents.", image: "" },
-    { name: "Beach Day Bonfire", minPlayers: 5, maxPlayers: 12, environment: "outdoor", energy: "low energy", cost: "project-based", description: "Lay out towels for swimming by day, and stay late to tell stories around an open fire pit.", image: "" },
-    { name: "Sports Day BBQ", minPlayers: 5, maxPlayers: 25, environment: "outdoor", energy: "high focus", cost: "project-based", description: "Host a massive backyard field day with competitive team games and grilled food.", image: "" }
+    { name: "Projector Movie Night", minPlayers: 1, maxPlayers: 30, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["zero setup", "project-based"], description: "Set up a screen in your room for a cozy, cinematic escape.", image: "" },
+    { name: "Sketchbook Cafe Session", minPlayers: 1, maxPlayers: 10, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["zero setup", "project-based"], description: "Grab a pencil and sketch whatever comes to mind at a cozy local spot.", image: "" },
+    { name: "Big Bounce Park", minPlayers: 1, maxPlayers: 20, environments: ["indoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Spend the afternoon jumping at a massive indoor trampoline arena.", image: "" },
+    { name: "Trampoline Play Session", minPlayers: 1, maxPlayers: 15, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["zero setup"], description: "Bounce around on a trampoline and practice clean, classic tricks.", image: "" },
+    { name: "Rooftop Film Screening", minPlayers: 1, maxPlayers: 25, environments: ["outdoor"], energies: ["low", "medium"], costs: ["project-based"], description: "Watch a movie under the stars on a scenic rooftop terrace.", image: "" },
+    { name: "Go-Kart Racing Adventure", minPlayers: 1, maxPlayers: 15, environments: ["indoor", "outdoor"], energies: ["high"], costs: ["project-based"], description: "Put the pedal to the metal on a high-speed racing track.", image: "" },
+    { name: "Museum Audio Tour", minPlayers: 1, maxPlayers: 12, environments: ["indoor"], energies: ["low", "medium"], costs: ["project-based"], description: "Put on headphones and wander through local galleries completely at your own pace.", image: "" },
+    { name: "Arcade High Score Chase", minPlayers: 1, maxPlayers: 20, environments: ["indoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Find a local retro arcade and try to cement your initials on the leaderboard.", image: "" },
+    { name: "Baking & Trivia Night", minPlayers: 1, maxPlayers: 12, environments: ["indoor"], energies: ["low", "medium", "high"], costs: ["project-based"], description: "Bake a cake from scratch while testing your brain with random trivia.", image: "" },
+    { name: "Golf Driving Range", minPlayers: 1, maxPlayers: 15, environments: ["outdoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Grab a club and practice your swing out on the green or at a driving range.", image: "" },
+    { name: "Window Shopping Stroll", minPlayers: 1, maxPlayers: 15, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["zero setup"], description: "Walk through a beautiful shopping district just to check out the displays and catch the vibe.", image: "" },
+    { name: "Summer Trip Vlogging", minPlayers: 1, maxPlayers: 10, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["zero setup", "project-based"], description: "Document your travels or local adventures and edit together an aesthetic video.", image: "" },
+    { name: "Clay Sculpting Session", minPlayers: 1, maxPlayers: 12, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["project-based"], description: "Grab some air-dry clay and mold simple room decor, dishes, or miniature figures.", image: "" },
+    { name: "Local Library Deep Dive", minPlayers: 1, maxPlayers: 8, environments: ["indoor"], energies: ["low"], costs: ["zero setup"], description: "Lose track of time in a massive book archive or finding a hidden reading corner.", image: "" },
+    { name: "Custom Playlist Curation", minPlayers: 1, maxPlayers: 6, environments: ["indoor"], energies: ["low", "medium"], costs: ["zero setup"], description: "Spend an hour designing the absolute perfect soundtrack for a highly specific mood or trip.", image: "" },
+    { name: "Cozy Brick Build", minPlayers: 1, maxPlayers: 10, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["project-based"], description: "Team up with your favorite person to build a complex Lego structure while catching up.", image: "" },
+    { name: "Nerf Quiet Challenge", minPlayers: 1, maxPlayers: 25, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["zero setup"], description: "Try to move silently across the room without getting tagged.", image: "" },
+    { name: "Sumo and Bowling", minPlayers: 1, maxPlayers: 20, environments: ["indoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Suit up for hilarious wrestling matches followed by a few bowling frames.", image: "" },
+    { name: "Hill Sledding Fun", minPlayers: 1, maxPlayers: 20, environments: ["outdoor"], energies: ["low", "medium", "high"], costs: ["zero setup"], description: "Grab heavy-duty bags and slide down grass or snow hills.", image: "" },
+    { name: "Lakeside Obstacle Run", minPlayers: 1, maxPlayers: 30, environments: ["outdoor"], energies: ["high"], costs: ["project-based"], description: "Team up to conquer rope climbs and water challenges over a lake.", image: "" },
+    { name: "Theme Park Trip", minPlayers: 1, maxPlayers: 30, environments: ["outdoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Head to the amusement park for wild rollercoasters and funnel cakes.", image: "" },
+    { name: "Canvas Painting Studio", minPlayers: 1, maxPlayers: 15, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["project-based"], description: "Follow along with a guided painting instructor or create your own custom masterpiece.", image: "" },
+    { name: "Pool Diving Practice", minPlayers: 1, maxPlayers: 12, environments: ["indoor", "outdoor"], energies: ["high"], costs: ["zero setup"], description: "Head to a local deep pool with a buddy and practice your high dives safely.", image: "" },
+    { name: "Rec Center Open Swim", minPlayers: 1, maxPlayers: 30, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["zero setup", "project-based"], description: "Hit up the indoor community pool for open swim hours and lane racing.", image: "" },
+    { name: "Escape Room Challenge", minPlayers: 1, maxPlayers: 12, environments: ["indoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Get locked in a themed room and race against a 60-minute clock to solve clues.", image: "" },
+    { name: "Helicopter City Tour", minPlayers: 1, maxPlayers: 6, environments: ["outdoor"], energies: ["low"], costs: ["project-based"], description: "Take to the skies for a breathtaking, unforgettable bird's-eye view of the city.", image: "" },
+    { name: "Ice Cream Vibe Check", minPlayers: 1, maxPlayers: 30, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["zero setup", "project-based"], description: "Walk down to a local parlor, grab double scoops, and catch up on life.", image: "" },
+    { name: "Farmer's Market Cooking Challenge", minPlayers: 1, maxPlayers: 10, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Pick up fresh, completely random local ingredients and turn them into a custom dinner dish.", image: "" },
+    { name: "Local Event Scout", minPlayers: 1, maxPlayers: 40, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["zero setup"], description: "Scan community boards for free concerts, festivals, or pop-up block parties and just go.", image: "" },
+    { name: "Blindfolded Duck Game", minPlayers: 1, maxPlayers: 25, environments: ["indoor", "outdoor"], energies: ["medium", "high"], costs: ["zero setup"], description: "Use water blasters to hunt target objects while completely blindfolded.", image: "" },
+    { name: "Personal Presentation Night", minPlayers: 1, maxPlayers: 25, environments: ["indoor"], energies: ["low", "medium", "high"], costs: ["zero setup"], description: "Take turns giving funny PowerPoint presentations about yourselves to the group.", image: "" },
+    { name: "Flashlight Tag", minPlayers: 1, maxPlayers: 30, environments: ["indoor", "outdoor"], energies: ["high"], costs: ["zero setup"], description: "Wait until nightfall and turn a local park or large backyard into an intense stealth arena.", image: "" },
+    { name: "Secret Santa Gift Exchange", minPlayers: 1, maxPlayers: 30, environments: ["indoor", "outdoor"], energies: ["low", "medium"], costs: ["zero setup", "project-based"], description: "Draw secret names out of a hat and surprise your friends with funny, thoughtful presents.", image: "" },
+    { name: "Beach Day Bonfire", minPlayers: 1, maxPlayers: 40, environments: ["outdoor"], energies: ["low", "medium"], costs: ["zero setup", "project-based"], description: "Lay out towels for swimming by day, and stay late to tell stories around an open fire pit.", image: "" },
+    { name: "Sports Day BBQ", minPlayers: 1, maxPlayers: 50, environments: ["outdoor"], energies: ["medium", "high"], costs: ["project-based"], description: "Host a massive backyard field day with competitive team games and grilled food.", image: "" }
   ];
+
+  const energyLabels = { low: "low energy", medium: "creative", high: "high focus" };
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -502,22 +503,19 @@
   }
 
   function matchesFilters(game) {
-    // FIXED: Now properly reading the dropdown element values instead of radio configurations
     const selPlayers = document.getElementById("players").value;
     const selEnv = document.getElementById("environment").value;
     const selEnergy = document.getElementById("energy").value;
     const selCost = document.getElementById("cost").value;
 
-    // Player Check
     if (selPlayers) {
       const n = Number(selPlayers);
       if (game.minPlayers > n || game.maxPlayers < n) return false;
     }
 
-    // Secondary Attributes Check
-    if (selEnv && game.environment !== selEnv) return false;
-    if (selEnergy && game.energy !== selEnergy) return false;
-    if (selCost && game.cost !== selCost) return false;
+    if (selEnv && !game.environments.includes(selEnv)) return false;
+    if (selEnergy && !game.energies.includes(selEnergy)) return false;
+    if (selCost && !game.costs.includes(selCost)) return false;
 
     return true;
   }
@@ -535,9 +533,11 @@
     resultsDiv.innerHTML = "";
 
     if (resultsList.length === 0) {
-      resultsDiv.innerHTML = "<div class='row' style='text-align: center; width:100%;'>No matches found.<br>Try adjusting your side selection parameters.</div>";
+      resultsDiv.innerHTML = "<div class='row' style='text-align: center; width:100%;'>No matches found.<br>Try adjusting your parameters.</div>";
     } else {
       resultsList.forEach((g) => {
+        const cleanEnergies = g.energies.map(e => energyLabels[e]).join(' #');
+        
         resultsDiv.innerHTML += `
           <div class="game-block">
             <img class="game-photo" src="${g.image || 'https://placehold.co/180x120/5b3636/ffffff?text=Activity'}" alt="${g.name}">
@@ -546,10 +546,10 @@
               <p class="desc">${g.description}</p>
               <br>
               <div class="g-right">
-                <span class="tag">squad fit: ${g.minPlayers}–${g.maxPlayers >= 20 ? "10+" : g.maxPlayers}</span>
-                <span class="tag">#${g.environment}</span>
-                <span class="tag">#${g.energy}</span>
-                <span class="tag">#${g.cost}</span>
+                <span class="tag">squad fit: ${g.minPlayers}–${g.maxPlayers >= 10 ? "10+" : g.maxPlayers}</span>
+                <span class="tag">#${g.environments.join(' #')}</span>
+                <span class="tag">#${cleanEnergies}</span>
+                <span class="tag">#${g.costs.join(' #')}</span>
               </div>
             </div>
           </div>
