@@ -1,3 +1,11 @@
+Here is your updated HTML code with the new logo added beside the **Game Finder** header.
+
+### Key Adjustments Made
+
+* Wrapped the header in a flex container (`.header-brand`) so the new spiral logo and the main title graphic stay aligned neatly side-by-side.
+* Styled `.logo-img` with responsive sizing and standard vertical alignment to keep it proportional across desktop and mobile screens.
+
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -113,6 +121,20 @@
     .left-pane, .right-pane { width: 50%; }
     .left-pane { text-align: center; }
 
+    .header-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 0 auto;
+    }
+
+    .logo-img {
+      width: 50px;
+      height: auto;
+      object-fit: contain;
+    }
+
     .hero-img {
       width: 100%;
       max-width: 320px;
@@ -136,10 +158,12 @@
         
     @media (min-width: 450px) {
       .paper-text { padding: 70px 50px 80px 120px; }
+      .logo-img { width: 65px; }
     }
 
     @media (min-width: 768px) {
       .paper-text { padding: 70px 50px 80px 100px; }
+      .logo-img { width: 75px; }
     }
 
     @media (min-width: 1024px) {
@@ -351,7 +375,10 @@
         
         <div class="left-pane">
           <h1>
-            <img class="hero-img" src="https://i.imgur.com/KzskkUR.png" alt="Branding Header">
+            <div class="header-brand">
+              <img class="logo-img" src="https://i.postimg.cc/zBzMLQRX/logo-spiral-transparent.png" alt="Spiral Logo">
+              <img class="hero-img" src="https://i.imgur.com/KzskkUR.png" alt="Branding Header">
+            </div>
           </h1>
         </div>
 
@@ -589,3 +616,5 @@
 
 </body>
 </html>
+
+```
